@@ -1,12 +1,19 @@
 export const addToCart = (aCart, aProd) => {
-    aCart.push(aProd);
+    try{
+        if(aProd.qty === 0) throw new Error(`Error prod. ${aProd.name}: Quantity must be greater than 0`);
+        if(aProd.price <= 0) throw new Error(`Error prod. ${aProd.name}: Price must be greater than 0`);
+        aCart.push(aProd);
+    }catch(error){
+        console.log(error.message);
+    }
     return aCart;
 }
 
 export const add3Products = (aCart) => {
-    let newCart = addToCart(aCart, {name: 'iPhone', price: 1500, qty: 2});
-    newCart = addToCart(aCart, {name: 'Galaxy S24', price: 1500, qty: 1});
-    newCart = addToCart(aCart, {name: 'Pixel 8', price: 1500, qty: 1});
+    let newCart;
+        newCart = addToCart(aCart, {name: 'iPhone', price: 1500, qty: 0});
+        newCart = addToCart(aCart, {name: 'Galaxy S24', price: 1500, qty: 3});
+        newCart = addToCart(aCart, {name: 'Pixel 8', price: 1500, qty: 1});
     return newCart;
 };
 
