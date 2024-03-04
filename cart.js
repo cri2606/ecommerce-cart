@@ -1,6 +1,6 @@
 export const addToCart = (aCart, aProd) => {
     try{
-        if(aProd.qty === 0) throw new Error(`Error prod. ${aProd.name}: Quantity must be greater than 0`);
+        if(aProd.qty <= 0) throw new Error(`Error prod. ${aProd.name}: Quantity must be greater than 0`);
         if(aProd.price <= 0) throw new Error(`Error prod. ${aProd.name}: Price must be greater than 0`);
         aCart.push(aProd);
     }catch(error){
